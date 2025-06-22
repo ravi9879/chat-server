@@ -1,7 +1,10 @@
 import OpenAI from "openai";
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 const openai = new OpenAI({
-  apiKey: "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",
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 const completion = openai.chat.completions.create({

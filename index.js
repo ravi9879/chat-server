@@ -1,4 +1,4 @@
-// const dotenv = require("dotenv");
+const dotenv = require("dotenv");
 // const { Configuration, OpenAIApi } = require("openai");
 
 const express = require("express");
@@ -15,7 +15,7 @@ const { signUp, login } = require("./controllers/userController");
 
 mconnect();
 
-// dotenv.config();
+dotenv.config();
 const app = express();
 const server = http.createServer(app);
 
