@@ -4,13 +4,13 @@ const dotenv = require("dotenv");
 const express = require("express");
 const http = require("http");
 const cors = require("cors");
-const socketIO = require("socket.io");
+// const socketIO = require("socket.io");
 const dy = require("body-parser");
-const { OpenAI } = require("openai");
+// const { OpenAI } = require("openai");
 const mconnect = require("./db");
  
 const Message = require("./models/Message");
-const func = require("./controllers/chatController");
+// const func = require("./controllers/chatController");
 const { signUp, login } = require("./controllers/userController");
 
 mconnect();
@@ -32,16 +32,16 @@ app.use(
 app.use(dy.json());
 app.use(dy.urlencoded({ extended: true }));
 
-const io = socketIO(server, {
-  cors: { origin: "*" },
-}); 
+// const io = socketIO(server, {
+//   cors: { origin: "*" },
+// }); 
  
 
 
 // Socket IO Logic
 
 
-io.on("connection" , func) ;
+// io.on("connection" , func) ;
 
 app.get("/", (req, res) => {
   res.send("hello");
