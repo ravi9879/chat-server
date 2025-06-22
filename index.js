@@ -32,9 +32,9 @@ app.use(
 app.use(dy.json());
 app.use(dy.urlencoded({ extended: true }));
 
-// const io = socketIO(server, {
-//   cors: { origin: "*" },
-// }); 
+const io = socketIO(server, {
+  cors: { origin: "*" },
+}); 
  
 
 
