@@ -4,13 +4,13 @@ const dotenv = require("dotenv");
 const express = require("express");
 const http = require("http");
 const cors = require("cors");
-// const socketIO = require("socket.io");
+const socketIO = require("socket.io");
 const dy = require("body-parser");
-// const { OpenAI } = require("openai");
+const { OpenAI } = require("openai");
 const mconnect = require("./db");
  
 const Message = require("./models/Message");
-// const func = require("./controllers/chatController");
+const func = require("./controllers/chatController");
 const { signUp, login } = require("./controllers/userController");
 
 mconnect();
@@ -41,7 +41,7 @@ app.use(dy.urlencoded({ extended: true }));
 // Socket IO Logic
 
 
-// io.on("connection" , func) ;
+io.on("connection" , func) ;
 
 app.get("/", (req, res) => {
   res.send("hello");
@@ -79,12 +79,4 @@ server.listen(5000, () => {
 
 
 
-
-
-
-// const openai = new OpenAIApi(new { apiKey: "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", });
-
-// const completion = await openai.createChatCompletion({
-//   model: "gpt-3.5-turbo",
-//   messages: [{ role: "user", content }],
-// });
+ 
