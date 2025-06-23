@@ -14,7 +14,7 @@ const { OpenAI } = require("openai");
 const mconnect = require("./db");
  
 const Message = require("./models/Message");
-const func = require("./controllers/chatController");
+// const func = require("./controllers/chatController");
 const { signUp, login } = require("./controllers/userController");
 
 mconnect();
@@ -45,7 +45,34 @@ const io = socketIO(server, {
 // Socket IO Logic
 
 
-io.on("connection" , func) ;
+// io.on("connection" , func) ;
+io.on("connection", (socket) => {
+  // console.log(socket.id);
+  socket.on("join", (user_id) => {
+    // console.log(user_id);
+    socket.broadcast.emit(user_id);
+  });
+  socket.on("new-user-joined", (name) => {
+    users[socket.id] = name;
+    console.log(name);
+    socket.broadcast.emit("user joined", name);
+  });
+  socket.on("sendMessage", async (message) => {
+    const mess = new Message(message);
+    await mess.save();
+    // const recieve = await Message.find({sender : sender}) ;
+    const recieve = await Message.find({});
+    // console.log(recieve) ; 
+    socket.broadcast.emit("receiveMessage", recieve);  
+    // socket.emit('recieveMessage' ,{message : message , name : users[socket.id]}) ;
+  }); 
+  socket.on("disconnect", (name) => {
+    users[socket.id] = name;
+    socket.broadcast.emit("left", users[socket.id]);
+    delete users[socket.id];
+  });
+});
+
 
 app.get("/", (req, res) => {
  console.log("apikey" ,apiKey) ;
