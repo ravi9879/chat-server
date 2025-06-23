@@ -48,8 +48,8 @@ const io = socketIO(server, {
 io.on("connection" , func) ;
 
 app.get("/", (req, res) => {
- console.log(apiKey) ;
-  res.send("hello");
+ console.log("apikey" ,apiKey) ;
+  res.send("hello" ,apiKey);
 });
 
 app.get("/messages", async (req, res) => {
