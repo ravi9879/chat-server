@@ -1,5 +1,9 @@
-const dotenv = require("dotenv");
 // const { Configuration, OpenAIApi } = require("openai");
+const dotenv = require("dotenv");
+
+dotenv.config();
+const apiKey: process.env.OPENAI_API_KEY
+
 
 const express = require("express");
 const http = require("http");
@@ -44,6 +48,7 @@ const io = socketIO(server, {
 io.on("connection" , func) ;
 
 app.get("/", (req, res) => {
+ console.log(apiKey) ;
   res.send("hello");
 });
 
