@@ -37,7 +37,7 @@ const func = (socket) => {
       // console.log(completion.choices[0].message);
 
       const botMessage = new Message({
-        sender: "ravi",
+        sender: "AI BOT",
         receiver: sender,
         content: completion.choices[0].message.content,
       });
